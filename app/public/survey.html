@@ -200,12 +200,14 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalThing">Inder Bootstra-like thing here</h5>
+            <h5 class="modal-title" id="modalThing">
+              Inder Bootstra-like thing here
+            </h5>
           </div>
           <div class="modal-body" id="yourBFF">
             UEEEET
           </div>
-					<img src="">
+          <img src="" />
           <div class="modal-footer"></div>
         </div>
       </div>
@@ -251,25 +253,26 @@
         if (validateIt()) {
           $.get('/api/friends', function(data) {
             //console.log(yourScores);
-            console.log(data);
             var bff = data[0];
-            var bestScore = 0;
-            for (var i = 0; i < data[i].length; i++) {
+            var bestScore = 40;
+            for (var i = 0; i < data.length; i++) {
               var difference = 0;
-              for (var i = 0; i < yourScores.length; i++) {
+              for (var k = 0; k < 10; k++) {
                 difference += Math.abs(
-                  parseInt(data[i].scores[i]) - yourScores[i],
+                  parseInt(data[i].scores[k]) - yourScores[k],
                 );
-              }
-              if (difference < bestScore) {
-                bestScore = difference;
-                bff = data[i];
+                if (difference < bestScore) {
+                  bestScore = difference;
+                  bff = data[i];
+                }
               }
             }
             console.log('Your BFF:', bff);
 
-						$("#yourBFF").append($("<p>").text("Your friend is :"+bff.name));
-						$("#yourBFF").append($("<img>").attr("src",bff.photo));
+            $('#yourBFF').append($('<p>').text('Your friend is :' + bff.name));
+            $('#yourBFF').append(
+              $('<img>').attr({src: bff.photo, width: '200px'}),
+            );
             $('#resultsModal').modal('show');
           });
           $.post('/api/friends', you, function(data) {
