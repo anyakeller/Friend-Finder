@@ -3,12 +3,14 @@
 var express = require("express");
 var app = express();
 
+// set port
 var PORT = process.env.PORT || 8080;
 
-app.use(express.urlencoded({ extended: true }));
+// use express
+app.userAgente(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+// use the routes 
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 
