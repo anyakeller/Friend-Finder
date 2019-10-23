@@ -205,6 +205,7 @@
           <div class="modal-body" id="yourBFF">
             UEEEET
           </div>
+					<img src="">
           <div class="modal-footer"></div>
         </div>
       </div>
@@ -268,6 +269,7 @@
             console.log('Your BFF:', bff);
 
 						$("#yourBFF").append($("<p>").text("Your friend is :"+bff.name));
+						$("#yourBFF").append($("<img>").attr("src",bff.photo));
             $('#resultsModal').modal('show');
           });
           $.post('/api/friends', you, function(data) {
